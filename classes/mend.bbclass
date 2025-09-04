@@ -245,6 +245,9 @@ python do_mend_check() {
     if d.getVar('LICENSE') == 'CLOSED':
         return
 
+    if bb.data.inherits_class("nopackages", d):
+        return
+
     mend_url = d.getVar("MEND_URL")
 
     patched_cves = get_patched_cves(d)
